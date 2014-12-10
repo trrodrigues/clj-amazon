@@ -9,5 +9,4 @@
     [n (count alist)
      counts (vals (frequencies (map #(nth % 1) alist)))]
 
-    (reduce + (map #(* (- %) (log2 %)) (map #(/ % n) counts)))
-    ))
+    (reduce + (map #(* (- %) (log2 %)) (map #(/ % n) counts)))))
