@@ -7,6 +7,23 @@
 (defn entropy [alist]
   (let
     [n (count alist)
-     counts (vals (frequencies (map #(nth % 1) alist)))]
+     list-freqs (vals (frequencies (map #(nth % 1) alist)))]
 
-    (reduce + (map #(* (- %) (log2 %)) (map #(/ % n) counts)))))
+    (reduce +
+            (map #(* (- %) (log2 %))
+                 (map #(/ % n) list-freqs)))))
+
+(defn info-gain
+  ([k alist]
+   (info-gain (entropy alist) k alist))
+
+  ([current-entropy k alist]
+   (let [grouped-keys (group-by #(k (nth % 0)) alist)
+         lcount (count alist)]
+
+     (- current-entropy
+        (reduce +
+                (map
+                 #(* (/ (count (nth % 1)) lcount)
+                     (entropy (nth % 1)))
+                 grouped-keys))))))

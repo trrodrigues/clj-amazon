@@ -6,4 +6,5 @@
   :main ^:skip-aot amazon.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
-             :dev {:dependencies []}})
+             :dev {:dependencies [[clojure-csv/clojure-csv "2.0.1"]]
+                   :resource-paths ["test/resources"]}})
