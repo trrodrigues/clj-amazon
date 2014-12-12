@@ -1,8 +1,11 @@
 (ns amazon.core
   (:gen-class))
 
+
+
 (defn log2 [x]
   (/ (Math/log x) (Math/log 2)))
+
 
 (defn entropy [alist]
   (let
@@ -12,6 +15,7 @@
     (reduce +
             (map #(* (- %) (log2 %))
                  (map #(/ % n) list-freqs)))))
+
 
 (defn info-gain
   ([k alist]
@@ -32,3 +36,15 @@
 (defn max-info-gain-key [alist]
   (let [data-keys (keys (nth (first alist) 0))]
     (apply max-key #(info-gain % alist) data-keys)))
+
+
+(defn all-keys [aseq]
+  (into #{}
+        (flatten (map #(keys %)
+                      aseq))))
+
+
+(defn all-key-values [k aseq]
+  (into #{}
+        (map #(k %)
+             aseq)))

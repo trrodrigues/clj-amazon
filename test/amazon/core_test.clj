@@ -30,3 +30,21 @@
 
 (deftest max-info-gain-key-test
   (is (= :color (max-info-gain-key sample-data))))
+
+
+(deftest all-keys-test
+  (is (= #{}
+         (all-keys [])))
+  (is (= #{:color :size :act :age}
+         (all-keys (map #(first %)
+                        sample-data)))))
+
+
+(deftest all-key-values-test
+  (is (= #{}
+         (all-key-values identity
+                         [])))
+  (is (= #{"YELLOW" "PURPLE"}
+         (all-key-values :color
+                         (map #(first %)
+                              sample-data)))))
