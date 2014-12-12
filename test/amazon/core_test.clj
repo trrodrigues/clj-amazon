@@ -25,3 +25,8 @@
   (is (= 0.4199730940219749 (info-gain :size sample-data)) "size attribute info-gain")
   (is (= 0.0 (info-gain :act sample-data)) "act attribute info-gain")
   (is (= 0.0 (info-gain :age sample-data)) "age attribute info-gain"))
+
+
+
+(deftest max-info-gain-key-test
+  (is (= :color (max-info-gain-key sample-data))))

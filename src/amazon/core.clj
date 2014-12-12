@@ -27,3 +27,8 @@
                  #(* (/ (count (nth % 1)) lcount)
                      (entropy (nth % 1)))
                  grouped-keys))))))
+
+
+(defn max-info-gain-key [alist]
+  (let [data-keys (keys (nth (first alist) 0))]
+    (apply max-key #(info-gain % alist) data-keys)))
